@@ -5,6 +5,10 @@ failed_acr_dockerfiles = []
 
 failed_ecr_dockerfiles.append("base_images/image1.Dockerfile")
 failed_ecr_dockerfiles.append("base_images/image2.Dockerfile")
+failed_ecr_dockerfiles.append("base_images/image3.Dockerfile")
+
+failed_acr_dockerfiles.append("base_images/image2.Dockerfile")
+failed_acr_dockerfiles.append("base_images/image4.Dockerfile")
 
 print(f"Failed ECR Dockerfiles: {failed_ecr_dockerfiles}")
 print(f"Type: {type(failed_ecr_dockerfiles)}")
