@@ -23,6 +23,13 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Run Python File
+        shell: bash
+        run: |
+          cd ${{ github.workspace }}
+          ls -l 
+          python -u EnvVariableList.py
+
       - name: Summarize Failed Dockerfiles
         shell: python
         run: |
