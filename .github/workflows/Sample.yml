@@ -1,0 +1,33 @@
+name: Main - Ingestion Of Images
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  main_ingestion:
+    name: Main Ingestion
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Summarize Failed Dockerfiles
+        shell: python
+        run: |
+            import os
+
+            failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES", "")
+
+            print("✅ {failed_ecr}")
