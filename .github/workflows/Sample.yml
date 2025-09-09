@@ -35,6 +35,6 @@ jobs:
         run: |
             import os
 
-            failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES", "")
+            failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES")
 
             print("✅ {failed_ecr}")
