@@ -8,20 +8,18 @@ print(f"TYPE ACR Dockerfiles: {type(os.getenv("FAILED_ACR_DOCKERFILES"))}")
 
 print(f"===================================================================")
 
-# Get the env variables (space-separated or comma-separated)
 failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES", "")
 failed_acr = os.getenv("FAILED_ACR_DOCKERFILES", "")
 
-# Split into lists (adjust separator if needed)
-list_ecr = failed_ecr.strip().split()
-list_acr = failed_acr.strip().split()
+list_ecr = failed_ecr.split()
+list_acr = failed_acr.split()
 
-# Merge and deduplicate
-combined = list(set(list_ecr + list_acr))
+combined = sorted(set(list_ecr + list_acr))
 
-# Print results
-print("🚨 Combined Failed Dockerfiles:")
-for item in sorted(combined):
-    print(f" - {item}")
-
-print(f"📦 Total unique failures: {len(combined)}")
+if combined:
+    print("🚨 Overall Failed Dockerfiles:")
+    for item in combined:
+        print(f" - {item}")
+    print(f"📦 Total unique failures: {len(combined)}")
+else:
+    print("✅ No failures detected.")
