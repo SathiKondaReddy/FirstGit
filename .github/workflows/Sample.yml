@@ -50,3 +50,10 @@ jobs:
             failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES")
 
             print(f"✅ {failed_ecr}")
+
+      - name: Checking ENV Values inside Second Python
+        shell: shell
+        run: |
+          cd ${{ github.workspace }}
+          ls -l 
+          python -u DisplayEnvVariables.py            
