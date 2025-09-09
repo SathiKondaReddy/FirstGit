@@ -8,13 +8,10 @@ print(f"TYPE ACR Dockerfiles: {type(os.getenv("FAILED_ACR_DOCKERFILES"))}")
 
 print(f"===================================================================")
 
-failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES", "")
-failed_acr = os.getenv("FAILED_ACR_DOCKERFILES", "")
+failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES", "").split()
+failed_acr = os.getenv("FAILED_ACR_DOCKERFILES", "").split()
 
-list_ecr = failed_ecr.split()
-list_acr = failed_acr.split()
-
-combined = sorted(set(list_ecr + list_acr))
+combined = sorted(set(failed_ecr + failed_acr))
 
 if combined:
     print("🚨 Overall Failed Dockerfiles:")
