@@ -29,6 +29,18 @@ jobs:
           cd ${{ github.workspace }}
           ls -l 
           python -u EnvVariableList.py
+      
+      - name: Testing If Condition
+        shell: bash
+        if: ${{ env.FAILED_ECR_DOCKERFILES != '[]' }} 
+        run: |
+            echo "Checking if identifying NOT EMPTY"
+
+      - name: Testing If Condition 2
+        shell: bash
+        if: ${{ env.FAILED_ACR_DOCKERFILES == '[]' }} 
+        run: |
+            echo "Checking if identifying EMPTY"
 
       - name: Summarize Failed Dockerfiles
         shell: python
