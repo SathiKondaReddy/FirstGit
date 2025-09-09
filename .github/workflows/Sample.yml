@@ -52,7 +52,7 @@ jobs:
             print(f"✅ {failed_ecr}")
 
       - name: Checking ENV Values inside Second Python
-        shell: shell
+        shell: bash
         run: |
           cd ${{ github.workspace }}
           ls -l 
