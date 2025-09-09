@@ -37,4 +37,4 @@ jobs:
 
             failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES")
 
-            print("✅ {failed_ecr}")
+            print(f"✅ {failed_ecr}")
