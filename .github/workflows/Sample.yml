@@ -52,7 +52,7 @@ jobs:
             echo "Checking if identifying EMPTY"
 
       - name: Summarize Failed Dockerfiles
-        shell: python -u
+        shell: python
         run: |
 
           import sys
@@ -60,6 +60,8 @@ jobs:
           #sys.path.append(os.path.join(os.getcwd(), "scripts"))
           from DisplayEnvVariables import DisplaySomething
           DisplaySomething('HELLO')
+        env:
+          PYTHONUNBUFFERED: '1'
 
 
       - name: Checking ENV Values inside Second Python
