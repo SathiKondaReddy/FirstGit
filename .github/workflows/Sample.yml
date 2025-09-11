@@ -61,8 +61,8 @@ jobs:
           sys.path.append(os.getcwd())
           from DisplayEnvVariables import DisplaySomething
           DisplaySomething('HELLO')
-        env:
-          PYTHONUNBUFFERED: '1'
+        # env:
+        #   PYTHONUNBUFFERED: '1'
 
 
       - name: Checking ENV Values inside Second Python
