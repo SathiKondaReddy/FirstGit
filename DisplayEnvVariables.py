@@ -1,4 +1,5 @@
 import os
+import time
 
 def DisplaySomething(message: str):
 
@@ -11,7 +12,7 @@ def DisplaySomething(message: str):
     print(f"TYPE ACR Dockerfiles: {type(os.getenv("FAILED_ACR_DOCKERFILES"))}")
 
     print(f"===================================================================")
-
+    time.sleep(120)
     failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES", "").split()
     failed_acr = os.getenv("FAILED_ACR_DOCKERFILES", "").split()
 
