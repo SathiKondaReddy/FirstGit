@@ -1,22 +1,26 @@
 import os
 
-print(f"Failed ECR Dockerfiles: {os.getenv("FAILED_ECR_DOCKERFILES")}")
-print(f"TYPE ECR Dockerfiles: {type(os.getenv("FAILED_ECR_DOCKERFILES"))}")
+def DisplaySomething(message: str):
 
-print(f"Failed ACR Dockerfiles: {os.getenv("FAILED_ACR_DOCKERFILES")}")
-print(f"TYPE ACR Dockerfiles: {type(os.getenv("FAILED_ACR_DOCKERFILES"))}")
+    print(message)
 
-print(f"===================================================================")
+    print(f"Failed ECR Dockerfiles: {os.getenv("FAILED_ECR_DOCKERFILES")}")
+    print(f"TYPE ECR Dockerfiles: {type(os.getenv("FAILED_ECR_DOCKERFILES"))}")
 
-failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES", "").split()
-failed_acr = os.getenv("FAILED_ACR_DOCKERFILES", "").split()
+    print(f"Failed ACR Dockerfiles: {os.getenv("FAILED_ACR_DOCKERFILES")}")
+    print(f"TYPE ACR Dockerfiles: {type(os.getenv("FAILED_ACR_DOCKERFILES"))}")
 
-combined = sorted(set(failed_ecr + failed_acr))
+    print(f"===================================================================")
 
-if combined:
-    print("🚨 Overall Failed Dockerfiles:")
-    for item in combined:
-        print(f" - {item}")
-    print(f"📦 Total unique failures: {len(combined)}")
-else:
-    print("✅ No failures detected.")
+    failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES", "").split()
+    failed_acr = os.getenv("FAILED_ACR_DOCKERFILES", "").split()
+
+    combined = sorted(set(failed_ecr + failed_acr))
+
+    if combined:
+        print("🚨 Overall Failed Dockerfiles:")
+        for item in combined:
+            print(f" - {item}")
+        print(f"📦 Total unique failures: {len(combined)}")
+    else:
+        print("✅ No failures detected.")

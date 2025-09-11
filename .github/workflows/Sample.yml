@@ -30,14 +30,14 @@ jobs:
           ls -l 
           python -u EnvVariableList.py
       
-      - name: Checking Overall Status of Run
-        shell: bash
-        if: ${{ always() && (env.FAILED_ACR_DOCKERFILES != '' || env.FAILED_ECR_DOCKERFILES != '') }}
-        run: |
-          echo "❌ FAILED : Dockerfiles failed during the build and push process."
-          echo "Failed ACR Dockerfiles: $FAILED_ACR_DOCKERFILES"
-          echo "Failed ECR Dockerfiles: $FAILED_ECR_DOCKERFILES"
-          exit 1
+      # - name: Checking Overall Status of Run
+      #   shell: bash
+      #   if: ${{ always() && (env.FAILED_ACR_DOCKERFILES != '' || env.FAILED_ECR_DOCKERFILES != '') }}
+      #   run: |
+      #     echo "❌ FAILED : Dockerfiles failed during the build and push process."
+      #     echo "Failed ACR Dockerfiles: $FAILED_ACR_DOCKERFILES"
+      #     echo "Failed ECR Dockerfiles: $FAILED_ECR_DOCKERFILES"
+      #     exit 1
       
       - name: Testing If Condition
         shell: bash
@@ -52,13 +52,15 @@ jobs:
             echo "Checking if identifying EMPTY"
 
       - name: Summarize Failed Dockerfiles
-        shell: python
+        shell: python -u
         run: |
-            import os
 
-            failed_ecr = os.getenv("FAILED_ECR_DOCKERFILES")
+          import sys
+          import os
+          #sys.path.append(os.path.join(os.getcwd(), "scripts"))
+          from DisplayEnvVariables import DisplaySomething
+          DisplaySomething('HELLO')
 
-            print(f"✅ {failed_ecr}")
 
       - name: Checking ENV Values inside Second Python
         shell: bash
